@@ -1,24 +1,26 @@
-# README
+# Minimine
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+### サイトテーマ
+ミニマリストの持ち物を投稿・閲覧し、ゆるく繋がれるSNS
 
-Things you may want to cover:
+### テーマを選んだ理由
+自分自身少ない持ち物で生活しているのですが、ミニマリスト同士で選りすぐりの持ち物を紹介し合えるSNSがあったら楽しそうだなと思い、このテーマにしました。
 
-* Ruby version
+### ターゲットユーザ
+ミニマリストや、ミニマリストに興味がある人
 
-* System dependencies
+### 主な利用シーン
+自分の持ち物の中で、お気に入りのものや便利なものを紹介したい時、または他のユーザーの持ち物を見たい時
 
-* Configuration
+## 設計書
 
-* Database creation
 
-* Database initialization
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 使用素材
