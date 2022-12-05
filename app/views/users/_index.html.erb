@@ -1,0 +1,12 @@
+<table class="table">
+  <% users.each do |user| %>
+    <tr>
+      <td>
+        <%= link_to user_path(user), class: "text-light" do %>
+          <%= image_tag user.get_profile_image, size: "50x50", class: "rounded-circle" %>
+          <%= user.name %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
