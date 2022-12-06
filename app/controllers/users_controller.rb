@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
+  before_action :ensure_correct_user, only: [:edit, :update, :quit, :destroy]
+
   def index
     @users = User.all
   end
@@ -8,22 +11,21 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
-    @user.update(user_params)
-    redirect_to user_path(@user)
+    if @user.update(user_params)
+      redirect_to user_path(@user), notice: "You have updated user successfully."
+    else
+      render "edit"
+    end
   end
 
   def quit
-    @user = User.find(params[:id])
   end
 
   def destroy
-    user = User.find(params[:id])
-    user.destroy
+    @user.destroy
     redirect_to root_path
   end
 
@@ -31,5 +33,12 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :introduction, :profile_image)
+  end
+
+  def ensure_correct_user
+    @user = User.find(params[:id])
+    unless (current_user.admin?) && (@user == current_user)
+      redirect_to user_path(current_user)
+    end
   end
 end
