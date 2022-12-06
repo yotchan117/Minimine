@@ -2,7 +2,7 @@
   <div class="border-dark">
     <% posts.each do |post| %>
       <%= link_to post_path(post) do %>
-        <%= image_tag post.get_image %>
+        <%= image_tag post.get_image, class: "mb-1" %>
       <% end %>
     <% end %>
   </div>

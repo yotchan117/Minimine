@@ -9,7 +9,7 @@
         <ul class="navbar-nav ml-auto">
           <% if user_signed_in? %>
             <li class="nav-item">
-              <%= link_to "Home", posts_path, class: "nav-link text-light mx-3" %>
+              <%= link_to "Posts", posts_path, class: "nav-link text-light mx-3" %>
             </li>
 
             <li class="nav-item">
@@ -28,10 +28,6 @@
               <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link text-light mx-2" %>
             </li>
           <% else %>
-            <li class="nav-item">
-              <%= link_to "Home", posts_path, class: "nav-link text-light mx-2" %>
-            </li>
-
             <li class="nav-item">
               <%= link_to "Log in", new_user_session_path, class: "nav-link text-light mx-2" %>
             </li>
