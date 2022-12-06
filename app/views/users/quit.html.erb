@@ -1,0 +1,14 @@
+<div class="container py-3">
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+      <h3 class="text-center">Quit</h3>
+      <p class="text-center">退会すると、投稿が全て削除されサービスが利用できなくなります。</p>
+      <p class="text-center">削除された投稿は復元することができません。</p>
+      <p class="text-center">本当に退会しますか？</p>
+      <div class="text-center">
+        <%= link_to "Yes", user_path(@user), method: :delete, "data-confirm" => "OKを押すと、退会が完了します。", class: "btn btn-danger" %>
+        <%= link_to "No", edit_user_path(@user), class: "btn btn-light" %>
+      </div>
+    </div>
+  </div>
+</div>
