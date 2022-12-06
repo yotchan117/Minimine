@@ -7,6 +7,6 @@ class Post < ApplicationRecord
   validates :description, presence: true
 
   def get_image
-    image.variant(gravity: :center, resize:"300x300^", crop:"300x300+0+0").processed
+    image.variant(gravity: :center, resize:"170x170^", crop:"170x170+0+0").processed
   end
 end

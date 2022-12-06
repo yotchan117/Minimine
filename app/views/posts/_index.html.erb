@@ -1,0 +1,9 @@
+<div class="d-flex flex-wrap">
+  <div class="border-dark">
+    <% posts.each do |post| %>
+      <%= link_to post_path(post) do %>
+        <%= image_tag post.get_image %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

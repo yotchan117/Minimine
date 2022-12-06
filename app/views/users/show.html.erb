@@ -15,4 +15,9 @@
       <p><%= @user.introduction %></p>
     </div>
   </div>
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+      <%= render "posts/index", posts: @posts %>
+    </div>
+  </div>
 </div>
