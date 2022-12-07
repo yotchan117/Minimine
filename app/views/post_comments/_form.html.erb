@@ -1,4 +1,4 @@
 <%= form_with(model: [post, post_comment], local: false) do |f| %>
-  <%= f.text_area :comment, placeholder: "Comment", class: "w-100 comment-textarea" %>
-  <%= f.submit "Comment", class: "btn btn-sm btn-light" %>
+  <%= f.text_area :comment, placeholder: "Comment", class: "w-100 comment-textarea mb-2" %>
+  <%= f.submit "Comment", class: "btn btn-sm btn-light float-right" %>
 <% end %>
