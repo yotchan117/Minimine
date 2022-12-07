@@ -8,7 +8,7 @@
             <%= @post.user.name %>
           <% end %>
           <div class="d-flex ml-auto align-items-center">
-            <% if (current_user.admin?) || (@post.user == current_user) %>
+            <% if (current_user.admin?) || (current_user == @post.user) %>
               <div class="mx-2">
                 <%= link_to "Edit", edit_post_path(@post), class: "btn btn-sm btn-secondary" %>
               </div>
@@ -20,7 +20,12 @@
         </div>
         <%= image_tag @post.image, class: "card-img" %>
         <div class="card-footer">
+          <div class="post-comments-counter"><%= render "post_comments/counter", post: @post %></div>
           <p><%= safe_join(@post.description.split("\n"), tag(:br)) %></p>
+          <div class="post-comments-index">
+            <%= render "post_comments/index", post: @post %>
+          </div>
+          <%= render "post_comments/form", post: @post, post_comment: @post_comment %>
         </div>
       </div>
     </div>

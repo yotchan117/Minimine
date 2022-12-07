@@ -21,7 +21,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @comment = PostComment.new
+    @post_comment = PostComment.new
   end
 
   def edit
@@ -46,7 +46,7 @@ class PostsController < ApplicationController
 
   def ensure_correct_user
     @post = Post.find(params[:id])
-    if (current_user.admin? == false) && (@post.user != current_user)
+    if (current_user.admin? == false) && (current_user != @post.user)
       redirect_to posts_path
     end
   end

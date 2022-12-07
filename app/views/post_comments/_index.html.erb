@@ -1,0 +1,14 @@
+<% post.post_comments.each do |post_comment| %>
+  <div class="d-flex">
+    <%= link_to user_path(post_comment.user) do %>
+      <%= image_tag post_comment.user.get_profile_image, size: "30x30", class: "rounded-circle" %>
+    <% end %>
+    <p class="ml-2"><%= post_comment.comment %></p>
+    <p class="ml-auto">
+      <% if (current_user.admin?) || (current_user == post_comment.user) %>
+        <%= link_to "Delete", post_post_comment_path(post, post_comment), method: :delete,
+        class: "btn btn-sm btn-danger", remote: true %>
+      <% end %>
+    </p>
+  </div>
+<% end %>
