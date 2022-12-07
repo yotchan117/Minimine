@@ -6,8 +6,9 @@
     <p class="ml-2"><%= post_comment.comment %></p>
     <p class="ml-auto">
       <% if (current_user.admin?) || (current_user == post_comment.user) %>
-        <%= link_to "Delete", post_post_comment_path(post, post_comment), method: :delete,
-        class: "btn btn-sm btn-danger", remote: true %>
+        <%= link_to post_post_comment_path(post, post_comment), method: :delete, class: "btn btn-sm btn-danger", remote: true do %>
+          <i class="fas fa-trash"></i>
+        <% end %>
       <% end %>
     </p>
   </div>

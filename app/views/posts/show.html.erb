@@ -10,18 +10,22 @@
           <div class="d-flex ml-auto align-items-center">
             <% if (current_user.admin?) || (current_user == @post.user) %>
               <div class="mx-2">
-                <%= link_to "Edit", edit_post_path(@post), class: "btn btn-sm btn-secondary" %>
+                <%= link_to edit_post_path(@post), class: "btn btn-sm btn-secondary" do %>
+                  <i class="fas fa-pen"></i>
+                <% end %>
               </div>
               <div>
-                <%= link_to "Delete", post_path(@post), method: :delete, "data-confirm" => "この投稿を削除しますか？", class: "btn btn-sm btn-danger" %>
+                <%= link_to post_path(@post), method: :delete, "data-confirm" => "この投稿を削除しますか？", class: "btn btn-sm btn-danger" do %>
+                  <i class="fas fa-trash"></i>
+                <% end %>
               </div>
             <% end %>
           </div>
         </div>
         <%= image_tag @post.image, class: "card-img" %>
         <div class="card-footer">
-          <div class="post-comments-counter"><%= render "post_comments/counter", post: @post %></div>
-          <p><%= safe_join(@post.description.split("\n"), tag(:br)) %></p>
+          <div class="post-comments-counter float-right"><%= render "post_comments/counter", post: @post %></div>
+          <p class="pt-4"><%= safe_join(@post.description.split("\n"), tag(:br)) %></p>
           <div class="post-comments-index">
             <%= render "post_comments/index", post: @post %>
           </div>

@@ -4,7 +4,9 @@
       <%= image_tag @user.get_profile_image, class: "rounded-circle" %>
       <div class="ml-auto">
         <% if (current_user.admin?) || (current_user == @user) %>
-          <%= link_to "Edit", edit_user_path(@user), class: "btn btn-light" %>
+          <%= link_to edit_user_path(@user), class: "btn btn-light" do %>
+            <i class="fas fa-cog"></i>
+          <% end %>
         <% end %>
       </div>
     </div>
