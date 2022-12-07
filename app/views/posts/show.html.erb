@@ -2,29 +2,25 @@
   <div class="row">
     <div class="col-md-6 mx-auto">
       <div class="card shadow-lg bg-dark">
-        <%= image_tag @post.image, class: "card-img-top" %>
-        <div class="card-body">
-          <div class="row">
-            <div class="col-2">
-              <%= link_to user_path(@post.user) do %>
-                <%= image_tag @post.user.get_profile_image, size: "100x100", class: "rounded-circle" %>
-              <% end %>
-            </div>
-            <div class="col-9 offset-1">
-              <%= link_to @post.user.name, user_path(@post.user), class: "text-light" %>
-              <p class="mt-1"><%= safe_join(@post.description.split("\n"), tag(:br)) %></p>
-              <div class="d-flex justify-content-end">
-                <% if (current_user.admin?) || (@post.user == current_user) %>
-                  <div class="mx-2">
-                    <%= link_to "Edit", edit_post_path(@post), class: "btn btn-secondary" %>
-                  </div>
-                  <div>
-                    <%= link_to "Delete", post_path(@post), method: :delete, "data-confirm" => "この投稿を削除しますか？", class: "btn btn-danger" %>
-                  </div>
-                <% end %>
+        <div class="card-header d-flex">
+          <%= link_to user_path(@post.user), class: "text-light" do %>
+            <%= image_tag @post.user.get_profile_image, size: "50x50", class: "rounded-circle" %>
+            <%= @post.user.name %>
+          <% end %>
+          <div class="d-flex ml-auto align-items-center">
+            <% if (current_user.admin?) || (@post.user == current_user) %>
+              <div class="mx-2">
+                <%= link_to "Edit", edit_post_path(@post), class: "btn btn-sm btn-secondary" %>
               </div>
-            </div>
+              <div>
+                <%= link_to "Delete", post_path(@post), method: :delete, "data-confirm" => "この投稿を削除しますか？", class: "btn btn-sm btn-danger" %>
+              </div>
+            <% end %>
           </div>
+        </div>
+        <%= image_tag @post.image, class: "card-img" %>
+        <div class="card-footer">
+          <p><%= safe_join(@post.description.split("\n"), tag(:br)) %></p>
         </div>
       </div>
     </div>

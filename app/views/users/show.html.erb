@@ -4,7 +4,7 @@
       <%= image_tag @user.get_profile_image, class: "rounded-circle" %>
       <div class="ml-auto">
         <% if (current_user.admin?) || (current_user == @user) %>
-          <%= link_to "プロフィールを編集", edit_user_path(@user), class: "btn btn-light" %>
+          <%= link_to "Edit", edit_user_path(@user), class: "btn btn-light" %>
         <% end %>
       </div>
     </div>
