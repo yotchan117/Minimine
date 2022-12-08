@@ -1,0 +1,32 @@
+<div class="container py-3">
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+      <h3 class="mb-3">Search</h3>
+      <div class="search_form">
+        <%= form_with url: result_path, method: :get, local: true do |f| %>
+          <div class="input-group">
+            <%= f.text_field :content, class: "form-control" %>
+            <div class="input-group-append">
+              <%= f.submit "Search", class: "btn btn-dark" %>
+            </div>
+          </div>
+          <div class="form-check form-check-inline my-3">
+            <%= f.radio_button :model, "user", checked: true %>
+            <%= f.label :model_user, "User", class: "mx-2" %>
+          </div>
+          <div class="form-check form-check-inline my-3">
+            <%= f.radio_button :model, "post" %>
+            <%= f.label :model_post, "Post", class: "mx-2" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<!--ラジオボタンがテキストの位置と合っていないため調整-->
+<style>
+  input[type="radio"] {
+    position: relative;
+    top: -3px;
+  }
+</style>
