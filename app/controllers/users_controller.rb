@@ -30,6 +30,7 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
 
+  # いいねした投稿一覧
   def favorites
     @user = User.find(params[:id])
     favorites = Favorite.where(user_id: @user.id).pluck(:post_id)
@@ -39,10 +40,11 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :introduction, :profile_image)
+    params.require(:user).permit(:name, :introduction, :profile_image, :email)
   end
 
   def ensure_correct_user
+    # 管理者もしくは本人以外にユーザーを更新させない
     @user = User.find(params[:id])
     if (current_user.admin? == false) && (current_user != @user)
       redirect_to user_path(current_user)

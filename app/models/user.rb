@@ -20,6 +20,7 @@ class User < ApplicationRecord
 
   has_one_attached :profile_image
 
+  validates :email, presence: true
   validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
   validates :introduction, length: { maximum: 100 }
 
@@ -42,7 +43,7 @@ class User < ApplicationRecord
   def following?(user)
     followings.include?(user)
   end
-  
+
   def self.search_for(content)
     User.where("name LIKE ?", "%" + content + "%")
   end

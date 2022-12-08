@@ -45,6 +45,7 @@ class PostsController < ApplicationController
   end
 
   def ensure_correct_user
+    # 管理者もしくは本人以外に投稿を更新させない
     @post = Post.find(params[:id])
     if (current_user.admin? == false) && (current_user != @post.user)
       redirect_to posts_path

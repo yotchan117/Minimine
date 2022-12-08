@@ -7,10 +7,15 @@ class SearchesController < ApplicationController
   def result
     @model = params[:model]
     @content = params[:content]
-    if @model == "user"
-      @records = User.search_for(@content)
-    elsif @model == "post"
+    # 検索フォームが空欄の場合画面遷移しない
+    if @content.empty?
+      render "search"
+    end
+
+    if @model == "post"
       @records = Post.search_for(@content)
+    elsif @model == "user"
+      @records = User.search_for(@content)
     end
   end
 end

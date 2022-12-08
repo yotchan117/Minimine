@@ -11,18 +11,19 @@
             </div>
           </div>
           <div class="form-check form-check-inline my-3">
-            <%= f.radio_button :model, "user", checked: true %>
-            <%= f.label :model_user, "User", class: "mx-2" %>
+            <%= f.radio_button :model, "post", checked: true %>
+            <%= f.label :model_post, "Post", class: "mx-2" %>
           </div>
           <div class="form-check form-check-inline my-3">
-            <%= f.radio_button :model, "post" %>
-            <%= f.label :model_post, "Post", class: "mx-2" %>
+            <%= f.radio_button :model, "user" %>
+            <%= f.label :model_user, "User", class: "mx-2" %>
           </div>
         <% end %>
       </div>
     </div>
   </div>
 </div>
+
 <!--ラジオボタンがテキストの位置と合っていないため調整-->
 <style>
   input[type="radio"] {
