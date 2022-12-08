@@ -3,8 +3,8 @@
     <div class="col-md-6 mx-auto">
       <div class="card shadow-lg bg-dark">
         <div class="card-header d-flex">
-          <%= link_to user_path(@post.user), class: "text-light" do %>
-            <%= image_tag @post.user.get_profile_image, size: "50x50", class: "rounded-circle" %>
+          <%= link_to user_path(@post.user), class: "text-light text-decoration-none" do %>
+            <%= image_tag @post.user.get_profile_image, size: "50x50", class: "rounded-circle mr-1" %>
             <%= @post.user.name %>
           <% end %>
           <div class="d-flex ml-auto align-items-center">

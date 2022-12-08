@@ -1,12 +1,19 @@
-<table class="table table-borderless">
-  <% users.each do |user| %>
-    <tr>
-      <td>
-        <%= link_to user_path(user), class: "text-light" do %>
-          <%= image_tag user.get_profile_image, size: "50x50", class: "rounded-circle" %>
-          <%= user.name %>
-        <% end %>
-      </td>
-    </tr>
-  <% end %>
-</table>
+<% if users.empty? %>
+  <p>ユーザーはいません</p>
+<% else %>
+  <table class="table table-borderless">
+    <% users.each do |user| %>
+      <tr>
+        <td>
+          <%= link_to user_path(user), class: "text-light text-decoration-none" do %>
+            <%= image_tag user.get_profile_image, size: "50x50", class: "rounded-circle mr-1" %>
+            <%= user.name %>
+          <% end %>
+        </td>
+        <td class="float-right">
+          <%= render "relationships/btn", user: user %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>

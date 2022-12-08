@@ -3,6 +3,7 @@
     <div class="col-md-6 mx-auto d-flex">
       <%= image_tag @user.get_profile_image, class: "rounded-circle" %>
       <div class="ml-auto">
+        <%= render "relationships/btn", user: @user %>
         <% if (current_user.admin?) || (current_user == @user) %>
           <%= link_to edit_user_path(@user), class: "btn btn-light" do %>
             <i class="fas fa-cog"></i>
@@ -15,9 +16,20 @@
     <div class="col-md-6 mx-auto py-3">
       <h4><%= @user.name %></h4>
       <p><%= @user.introduction %></p>
-      <div class="mb-2">
+      <div class="d-flex mb-2 align-items-center">
+        <div>
+          <%= link_to user_followings_path(@user), class: "text-light" do %>
+            <%= @user.followings.count %> Following
+          <% end %>
+          <%= link_to user_followers_path(@user), class: "text-light ml-2" do %>
+            <%= @user.followers.count %> Followers
+          <% end %>
+        </div>
+        <div class="ml-auto">
         <%= link_to "Favorites", favorites_user_path(@user), class: "btn btn-dark" %>
+        </div>
       </div>
+
     </div>
   </div>
   <div class="row">
