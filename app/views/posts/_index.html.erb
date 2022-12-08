@@ -1,8 +1,12 @@
 <div class="d-flex flex-wrap">
   <div class="border-dark">
-    <% posts.each do |post| %>
-      <%= link_to post_path(post) do %>
-        <%= image_tag post.get_image, class: "mb-1" %>
+    <% if posts.empty? %>
+      <p>投稿はありません。</p>
+    <% else %>
+      <% posts.each do |post| %>
+        <%= link_to post_path(post) do %>
+          <%= image_tag post.get_image, class: "mb-1" %>
+        <% end %>
       <% end %>
     <% end %>
   </div>
