@@ -52,10 +52,10 @@ class UsersController < ApplicationController
     end
   end
 
-  # ゲストユーザーは編集画面に遷移できない
+  # 管理者以外はゲストユーザーの編集画面に遷移できない
   def ensure_guest_user
     @user = User.find(params[:id])
-    if @user.name == "guestuser"
+    if (@user.name == "guestuser") && (current_user.admin? == false)
       redirect_to user_path(current_user), notice: "Invalid action."
     end
   end
