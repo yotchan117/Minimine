@@ -4,7 +4,8 @@
       <%= image_tag @user.get_profile_image, class: "rounded-circle" %>
       <div class="ml-auto">
         <%= render "relationships/btn", user: @user %>
-        <% if (current_user.admin?) || (current_user == @user) %>
+        <!--現在ログインしているユーザーが管理者または本人、かつゲストユーザーでなければ編集ボタンを表示-->
+        <% if (current_user.admin?) || (current_user == @user) && (current_user.name != "guestuser")%>
           <%= link_to edit_user_path(@user), class: "btn btn-light" do %>
             <i class="fas fa-cog"></i>
           <% end %>

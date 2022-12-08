@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_correct_user, only: [:edit, :update, :quit, :destroy]
+  before_action :ensure_guest_user, only: [:edit]
 
   def index
     @users = User.all
@@ -43,11 +44,19 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :introduction, :profile_image, :email)
   end
 
-  def ensure_correct_user
     # 管理者もしくは本人以外にユーザーを更新させない
+  def ensure_correct_user
     @user = User.find(params[:id])
     if (current_user.admin? == false) && (current_user != @user)
       redirect_to user_path(current_user)
+    end
+  end
+
+  # ゲストユーザーは編集画面に遷移できない
+  def ensure_guest_user
+    @user = User.find(params[:id])
+    if @user.name == "guestuser"
+      redirect_to user_path(current_user), notice: "Invalid action."
     end
   end
 end
