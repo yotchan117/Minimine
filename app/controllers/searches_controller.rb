@@ -13,11 +13,11 @@ class SearchesController < ApplicationController
     end
 
     if @model == "post"
-      @records = Post.search_for(@content).page(params[:page]).per(12)
+      @records = Post.search_for(@content).order(created_at: :desc).page(params[:page]).per(12)
     elsif @model == "tag"
-      @records = Kaminari.paginate_array(Tag.search_posts_for(@content)).page(params[:page]).per(12)
+      @records = Kaminari.paginate_array(Tag.search_posts_for(@content).sort.reverse).page(params[:page]).per(12)
     elsif @model == "user"
-      @records = User.search_for(@content).page(params[:page]).per(20)
+      @records = User.search_for(@content).order(created_at: :desc).page(params[:page]).per(20)
     end
   end
 end
