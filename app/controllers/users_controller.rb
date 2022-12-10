@@ -4,12 +4,12 @@ class UsersController < ApplicationController
   before_action :ensure_guest_user, only: [:edit]
 
   def index
-    @users = User.all
+    @users = User.page(params[:page]).per(20)
   end
 
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts
+    @posts = @user.posts.page(params[:page]).per(12)
   end
 
   def edit
@@ -35,7 +35,7 @@ class UsersController < ApplicationController
   def favorites
     @user = User.find(params[:id])
     favorites = Favorite.where(user_id: @user.id).pluck(:post_id)
-    @favorite_posts = Post.find(favorites)
+    @favorite_posts = Kaminari.paginate_array(Post.find(favorites)).page(params[:page]).per(12)
   end
 
   private

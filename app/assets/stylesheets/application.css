@@ -13,3 +13,13 @@
  *= require_tree .
  *= require_self
  */
+
+  /*ラジオボタンとテキストの位置が合っていないため調整*/
+  input[type="radio"] {
+    position: relative;
+    top: -3px;
+  }
+
+  .pagination {
+    justify-content: center;
+  }
