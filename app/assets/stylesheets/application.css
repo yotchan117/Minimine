@@ -23,3 +23,18 @@
   .pagination {
     justify-content: center;
   }
+
+  .pagination>li>a {
+    border: none;
+    background-color: #343a40;
+    color: #f8f9fa;
+  }
+
+  .pagination>.active>a {
+    background-color: #f8f9fa !important;
+    color: #343a40 !important;
+  }
+
+  .pagination>li>a:hover {
+    color: #343a40;
+  }
