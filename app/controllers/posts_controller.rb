@@ -20,6 +20,11 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.order(created_at: :desc).page(params[:page]).per(12)
+    if params[:latest]
+      @posts = Post.order(created_at: :desc).page(params[:page]).per(12)
+    elsif params[:popular]
+      @posts = Kaminari.paginate_array(Post.find(Favorite.group(:post_id).order('count(post_id) desc').pluck(:post_id))).page(params[:page]).per(12)
+    end
   end
 
   def show
