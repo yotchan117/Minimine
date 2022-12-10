@@ -14,6 +14,8 @@ class SearchesController < ApplicationController
 
     if @model == "post"
       @records = Post.search_for(@content)
+    elsif @model == "tag"
+      @records = Tag.search_posts_for(@content)
     elsif @model == "user"
       @records = User.search_for(@content)
     end

@@ -10,6 +10,11 @@
     <%= f.text_area :description, class: "form-control", rows: 5 %>
   </div>
 
+  <div class="form-group">
+    <%= f.label "Tag" %>
+    <%= f.text_field :tag_name, placeholder: "clothing,jacket,winter", class: "form-control" %>
+  </div>
+
   <div class="actions">
     <%= f.submit class: "btn btn-light my-2" %>
   </div>

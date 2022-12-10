@@ -34,6 +34,13 @@
           </div>
           <!--新規投稿画面で入力した通りに本文が出力される-->
           <p class="pt-4"><%= safe_join(@post.description.split("\n"), tag(:br)) %></p>
+          <div class="mb-3">
+            <% @post.tags.each do |tag| %>
+              <%= link_to result_path(content: tag.name, model: "tag"), class: "text-light" do %>
+                #<%= tag.name %>
+              <% end %>
+            <% end %>
+          </div>
           <div class="post-comments-index">
             <%= render "post_comments/index", post: @post %>
           </div>
