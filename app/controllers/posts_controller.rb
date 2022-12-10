@@ -19,6 +19,7 @@ class PostsController < ApplicationController
   end
 
   def index
+    # デフォルトは新着順で表示。Popularを押すといいねが多い順で表示。
     @posts = Post.order(created_at: :desc).page(params[:page]).per(12)
     if params[:latest]
       @posts = Post.order(created_at: :desc).page(params[:page]).per(12)

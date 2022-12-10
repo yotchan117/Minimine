@@ -24,16 +24,19 @@
         </div>
         <%= image_tag @post.image, class: "card-img" %>
         <div class="card-footer">
-          <div class="d-flex float-right">
-            <div class="post-comments-counter mx-2">
-              <%= render "post_comments/counter", post: @post %>
-            </div>
-            <div class=<%= "favorite-" + @post.id.to_s %> >
-              <%= render "favorites/btn", post: @post %>
+          <div class="d-flex">
+            <p><%= @post.created_at.strftime("%Y/%m/%d %H:%M") %></p>
+            <div class="d-flex ml-auto">
+              <div class="post-comments-counter mx-2">
+                <%= render "post_comments/counter", post: @post %>
+              </div>
+              <div class=<%= "favorite-" + @post.id.to_s %> >
+                <%= render "favorites/btn", post: @post %>
+              </div>
             </div>
           </div>
           <!--新規投稿画面で入力した通りに本文が出力される-->
-          <p class="pt-4"><%= safe_join(@post.description.split("\n"), tag(:br)) %></p>
+          <p class="pt-2"><%= safe_join(@post.description.split("\n"), tag(:br)) %></p>
           <div class="mb-3">
             <% @post.tags.each do |tag| %>
               <%= link_to result_path(content: tag.name, model: "tag"), class: "text-light" do %>
