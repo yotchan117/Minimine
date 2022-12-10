@@ -4,6 +4,7 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    @tag_list = nil
   end
 
   def create
@@ -27,10 +28,18 @@ class PostsController < ApplicationController
   end
 
   def edit
+    @tag_list = @post.tags.pluck(:name).join(",")
   end
 
   def update
+    tag_list = params[:post][:tag_name].split(",")
     if @post.update(post_params)
+      #もともと登録されていたタグを削除し、登録し直す
+      @old_relations = PostTag.where(post_id: @post.id)
+      @old_relations.each do |relation|
+        relation.delete
+      end
+      @post.save_tags(tag_list)
       redirect_to post_path(@post), notice: "You have updated post successfully."
     else
       render "edit"
