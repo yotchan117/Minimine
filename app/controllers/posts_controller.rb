@@ -20,7 +20,7 @@ class PostsController < ApplicationController
 
   def index
     # デフォルトはフォローしているユーザー＋自分の投稿一覧。リンクをクリックすると表示方法を切り替え。
-    @posts = Post.where(user_id: [current_user.id, *current_user.following_ids]).page(params[:page]).per(12)
+    @posts = Post.where(user_id: [current_user.id, *current_user.following_ids]).order(created_at: :desc).page(params[:page]).per(12)
     if params[:following]
       @posts = Post.where(user_id: [current_user.id, *current_user.following_ids]).order(created_at: :desc).page(params[:page]).per(12)
     elsif params[:latest]
