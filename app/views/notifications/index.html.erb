@@ -13,9 +13,9 @@
             <p>
             <%= link_to user_path(notification.visitor), class: "text-light text-decoration-none font-weight-bold" do %>
               <%= image_tag notification.visitor.get_profile_image, size: "50x50", class: "rounded-circle mr-1" %>
-              <%= notification.visitor.name %>
+              <%= notification.visitor.name %>さん
             <% end %>
-            さんが
+            が
             <% if notification.action == "follow" %>
               あなたをフォローしました
             <% elsif notification.action == "favorite" %>
@@ -31,7 +31,6 @@
               <% end %>
             <% end %>
             </p>
-
           </div>
         <% end %>
       <% end %>

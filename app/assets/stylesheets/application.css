@@ -38,3 +38,10 @@
   .pagination>li>a:hover {
     color: #343a40;
   }
+
+  .fa-circle {
+    position: absolute;
+    color: #dc3545;
+    font-size: 0.5em;
+    margin-top: 3px;
+  }

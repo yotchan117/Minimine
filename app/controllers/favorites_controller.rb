@@ -5,7 +5,7 @@ class FavoritesController < ApplicationController
     post = Post.find(params[:post_id])
     @favorite = current_user.favorites.new(post_id: post.id)
     @favorite.save
-    # いいねの通知作成
+    # いいねの通知作成メソッド
     post.create_notification_favorite!(current_user)
     render "replace_btn"
   end
