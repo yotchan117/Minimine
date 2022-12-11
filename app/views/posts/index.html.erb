@@ -3,9 +3,11 @@
     <div class="col-md-6 mx-auto">
       <h3 class="mb-1">Posts</h3>
       <div class="mb-2">
-        <%= link_to "Latest", posts_path(latest: "true"), class: "text-light" %>
+        <%= link_to "Following", posts_path(following: "true"), class: "text-light mr-1" %>
         |
-        <%= link_to "Popular", posts_path(popular: "true"), class: "text-light" %>
+        <%= link_to "Latest", posts_path(latest: "true"), class: "text-light mx-1" %>
+        |
+        <%= link_to "Popular", posts_path(popular: "true"), class: "text-light mx-1" %>
       </div>
       <%= render "index", posts: @posts %>
     </div>

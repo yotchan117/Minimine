@@ -19,9 +19,11 @@ class PostsController < ApplicationController
   end
 
   def index
-    # デフォルトは新着順で表示。Popularを押すといいねが多い順で表示。
-    @posts = Post.order(created_at: :desc).page(params[:page]).per(12)
-    if params[:latest]
+    # デフォルトはフォローしているユーザー＋自分の投稿一覧。リンクをクリックすると表示方法を切り替え。
+    @posts = Post.where(user_id: [current_user.id, *current_user.following_ids]).page(params[:page]).per(12)
+    if params[:following]
+      @posts = Post.where(user_id: [current_user.id, *current_user.following_ids]).order(created_at: :desc).page(params[:page]).per(12)
+    elsif params[:latest]
       @posts = Post.order(created_at: :desc).page(params[:page]).per(12)
     elsif params[:popular]
       @posts = Kaminari.paginate_array(Post.find(Favorite.group(:post_id).order('count(post_id) desc').pluck(:post_id))).page(params[:page]).per(12)
