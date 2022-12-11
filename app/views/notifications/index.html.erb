@@ -1,0 +1,41 @@
+<div class="container py-3">
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+      <h3 class="mb-3">Notifications</h3>
+
+      <% notifications = @notifications.where.not(visitor_id: current_user.id) %>
+
+      <% if notifications.empty? %>
+        <p>通知はありません。</p>
+      <% else %>
+        <% notifications.each do |notification| %>
+          <div class="d-flex">
+            <p>
+            <%= link_to user_path(notification.visitor), class: "text-light text-decoration-none font-weight-bold" do %>
+              <%= image_tag notification.visitor.get_profile_image, size: "50x50", class: "rounded-circle mr-1" %>
+              <%= notification.visitor.name %>
+            <% end %>
+            さんが
+            <% if notification.action == "follow" %>
+              あなたをフォローしました
+            <% elsif notification.action == "favorite" %>
+              <%= link_to "あなたの投稿", post_path(notification.post), class: "text-light text-decoration-none font-weight-bold" %>にいいねしました
+            <% elsif notification.action == "comment" %>
+              <% if notification.post.user_id == notification.visited.id %>
+                <%= link_to "あなたの投稿", post_path(notification.post), class: "text-light text-decoration-none font-weight-bold" %>にコメントしました
+              <% else %>
+                <%= link_to post_path(notification.post), class: "text-light text-decoration-none font-weight-bold" do %>
+                  <%= notification.post.user.name %>さんの投稿
+                <% end %>
+                にコメントしました
+              <% end %>
+            <% end %>
+            </p>
+
+          </div>
+        <% end %>
+      <% end %>
+      <div class="mt-4"><%= paginate notifications %></div>
+    </div>
+  </div>
+</div>

@@ -18,6 +18,12 @@ class User < ApplicationRecord
   # 被フォロー関係を通じて参照→自分をフォローしている人
   has_many :followers, through: :reverse_of_relationships, source: :follower
 
+  #　自分が通知を送る側
+  has_many :notifications, class_name: "Notification", foreign_key: "visitor_id", dependent: :destroy
+  #　自分が通知を送られる側
+  has_many :reverse_of_notifications, class_name: "Notification", foreign_key: "visited_id", dependent: :destroy
+
+
   has_one_attached :profile_image
 
   validates :email, presence: true
@@ -52,6 +58,17 @@ class User < ApplicationRecord
     find_or_create_by!(name: "guestuser", email: "guest@guest.com") do |user|
       user.password = SecureRandom.urlsafe_base64
       user.name = "guestuser"
+    end
+  end
+
+  def create_notification_follow!(current_user)
+    temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ?", current_user.id, id, "follow"])
+    if temp.blank?
+      notification = current_user.notifications.new(
+        visited_id: id,
+        action: "follow"
+      )
+      notification.save if notification.valid?
     end
   end
 end

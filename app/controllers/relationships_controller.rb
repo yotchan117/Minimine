@@ -4,6 +4,8 @@ class RelationshipsController < ApplicationController
   def create
     user = User.find(params[:user_id])
     current_user.follow(user)
+    # フォローの通知作成メソッド
+    user.create_notification_follow!(current_user)
     redirect_back(fallback_location: root_path)
   end
 

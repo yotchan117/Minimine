@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     resource :favorites, only: [:create, :destroy]
     resources :post_comments, only: [:create, :destroy]
   end
-  # get "users/:id/quit" => "users#quit", as: "quit"
+
   resources :users, only: [:index, :show, :edit, :update, :destroy] do
     member do
       get :quit
@@ -22,6 +22,8 @@ Rails.application.routes.draw do
 
   get "search" => "searches#search"
   get "result" => "searches#result"
+
+  resources :notifications, only: [:index]
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
