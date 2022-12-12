@@ -3,7 +3,7 @@ class Tag < ApplicationRecord
   has_many :posts, through: :post_tags
 
   def self.search_posts_for(content)
-    tags = Tag.where("name LIKE ?", "%" + content + "%")
+    tags = Tag.where(name: content)
     return tags.inject(init = []) {|result, tag| result + tag.posts}
   end
 end
