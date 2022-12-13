@@ -13,7 +13,7 @@
         <%= render "layouts/errors", obj: @user %>
         <div class="form-group">
           <%= f.label :profile_image, "Image" %>
-          <%= f.file_field :profile_image, class: "form-control-file", accept: "image/*" %>
+          <%= f.file_field :profile_image, class: "form-control-file", accept: "image/jpg, image/jpeg, image/png" %>
         </div>
 
         <div class="form-group">
