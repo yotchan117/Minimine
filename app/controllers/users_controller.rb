@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_correct_user, only: [:edit, :update, :quit, :destroy]
-  before_action :ensure_guest_user, only: [:edit]
+  before_action :ensure_guest_user, only: [:edit, :quit]
 
   def index
     @users = User.order(created_at: :desc).page(params[:page]).per(20)
