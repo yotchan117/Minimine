@@ -1,7 +1,14 @@
 <div class="container py-3">
   <div class="row">
-    <div class="col-md-5 mx-auto">
+    <div class="col-md-5 mx-auto d-flex">
       <h3>Edit</h3>
+      <div class="ml-auto">
+        <%= link_to "Quit", quit_user_path(@user), class: "btn btn-danger" %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-5 mx-auto">
       <%= form_with model: @user do |f| %>
         <%= render "layouts/errors", obj: @user %>
         <div class="form-group">
@@ -24,9 +31,10 @@
           <%= f.text_area :introduction, class: "form-control" %>
         </div>
 
+        <p><u><%= link_to "Change your password?", edit_user_registration_path, class: "text-light" %></u></p>
+
         <div class="actions">
           <%= f.submit "Update", class: "btn btn-light my-2 mr-4" %>
-          <%= link_to "Quit", quit_user_path(@user), class: "btn btn-danger" %>
         </div>
       <% end %>
     </div>
