@@ -1,6 +1,6 @@
 <div class="container py-3">
   <div class="row">
-    <div class="col-md-6 mx-auto d-flex">
+    <div class="col-md-10 col-lg-8 col-xl-6 mx-auto d-flex">
       <%= image_tag @user.get_profile_image, class: "rounded-circle" %>
       <div class="ml-auto">
         <%= render "relationships/btn", user: @user %>
@@ -14,7 +14,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-6 mx-auto py-3">
+    <div class="col-md-10 col-lg-8 col-xl-6 mx-auto py-3">
       <h4><%= @user.name %></h4>
       <p><%= @user.introduction %></p>
       <div class="d-flex mb-2 align-items-center">
@@ -33,7 +33,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-6 mx-auto">
+    <div class="col-md-10 col-lg-8 col-xl-6 mx-auto">
       <%= render "posts/index", posts: @posts %>
     </div>
   </div>
