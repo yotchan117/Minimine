@@ -12,7 +12,7 @@ class Post < ApplicationRecord
   validates :description, presence: true
 
   def get_image
-    image.variant(gravity: :center, resize:"300x300^", crop:"300x300+0+0").processed
+    image.variant(gravity: :center, resize:"200x200^", crop:"200x200+0+0").processed
   end
 
   def favorited_by?(user)
