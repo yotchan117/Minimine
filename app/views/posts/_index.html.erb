@@ -4,7 +4,7 @@
   <% else %>
     <% posts.each do |post| %>
       <%= link_to post_path(post) do %>
-        <%= image_tag post.get_image %>
+        <%= image_tag post.get_image, style: "border:1px solid #6c757d;" %>
       <% end %>
     <% end %>
   <% end %>
