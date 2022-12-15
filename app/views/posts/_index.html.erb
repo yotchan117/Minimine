@@ -3,8 +3,8 @@
     <p>投稿はありません。</p>
   <% else %>
     <% posts.each do |post| %>
-      <%= link_to post_path(post) do %>
-        <%= image_tag post.get_image, style: "border:1px solid #6c757d;" %>
+      <%= link_to post_path(post), class: "img-link" do %>
+        <%= image_tag post.get_image, class: "img-box" %>
       <% end %>
     <% end %>
   <% end %>
