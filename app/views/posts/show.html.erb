@@ -40,7 +40,7 @@
           <div class="mb-3">
             <% @post.tags.each do |tag| %>
               <%= link_to result_path(content: tag.name, model: "tag"), class: "text-light" do %>
-                #<%= tag.name %>
+                #<%= tag.name.downcase %>
               <% end %>
             <% end %>
           </div>
