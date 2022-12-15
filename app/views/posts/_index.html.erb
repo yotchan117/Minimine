@@ -1,14 +1,12 @@
 <div class="d-flex flex-wrap">
-  <div class="border-dark">
-    <% if posts.empty? %>
-      <p>投稿はありません。</p>
-    <% else %>
-      <% posts.each do |post| %>
-        <%= link_to post_path(post) do %>
-          <%= image_tag post.get_image, class: "mb-1" %>
-        <% end %>
+  <% if posts.empty? %>
+    <p>投稿はありません。</p>
+  <% else %>
+    <% posts.each do |post| %>
+      <%= link_to post_path(post) do %>
+        <%= image_tag post.get_image %>
       <% end %>
     <% end %>
-  </div>
+  <% end %>
 </div>
 <div class="mt-4"><%= paginate posts %></div>
