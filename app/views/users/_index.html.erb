@@ -6,7 +6,7 @@
       <tr>
         <td>
           <%= link_to user_path(user), class: "text-light text-decoration-none" do %>
-            <%= image_tag user.get_profile_image, size: "50x50", class: "rounded-circle mr-1" %>
+            <%= image_tag user.get_profile_image, size: "50x50", class: "rounded-circle" %>
             <%= user.name %>
           <% end %>
         </td>

@@ -12,19 +12,26 @@
           <div class="d-flex">
             <p>
             <%= link_to user_path(notification.visitor), class: "text-light text-decoration-none font-weight-bold" do %>
-              <%= image_tag notification.visitor.get_profile_image, size: "50x50", class: "rounded-circle mr-1" %>
+              <%= image_tag notification.visitor.get_profile_image, size: "50x50", class: "rounded-circle" %>
               <%= notification.visitor.name %>さん
             <% end %>
             が
             <% if notification.action == "follow" %>
               あなたをフォローしました
             <% elsif notification.action == "favorite" %>
-              <%= link_to "あなたの投稿", post_path(notification.post), class: "text-light text-decoration-none font-weight-bold" %>にいいねしました
+              <%= link_to post_path(notification.post), class: "text-light text-decoration-none font-weight-bold" do %>
+                <%= image_tag notification.post.get_image, size: "50x50", class: "rounded-circle" %>
+                あなたの投稿
+              <% end %>にいいねしました
             <% elsif notification.action == "comment" %>
               <% if notification.post.user_id == notification.visited.id %>
-                <%= link_to "あなたの投稿", post_path(notification.post), class: "text-light text-decoration-none font-weight-bold" %>にコメントしました
+                <%= link_to post_path(notification.post), class: "text-light text-decoration-none font-weight-bold" do%>
+                  <%= image_tag notification.post.get_image, size: "50x50", class: "rounded-circle" %>
+                   あなたの投稿
+                <% end %>にコメントしました
               <% else %>
                 <%= link_to post_path(notification.post), class: "text-light text-decoration-none font-weight-bold" do %>
+                  <%= image_tag notification.post.get_image, size: "50x50", class: "rounded-circle" %>
                   <%= notification.post.user.name %>さんの投稿
                 <% end %>
                 にコメントしました
