@@ -1,11 +1,17 @@
-<div class="d-flex flex-wrap">
+<div class="mx-3">
   <% if posts.empty? %>
     <p>投稿はありません。</p>
   <% else %>
-    <% posts.each do |post| %>
-      <%= link_to post_path(post), class: "img-link" do %>
-        <%= image_tag post.get_image, class: "img-box" %>
-      <% end %>
+    <% posts.each_slice(3) do |posts| %>
+      <div class="row row-cols-3">
+        <% posts.each do |post| %>
+          <div class="col p-0">
+            <%= link_to post_path(post) do %>
+              <%= image_tag post.get_image, class: "box" %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
     <% end %>
   <% end %>
 </div>
