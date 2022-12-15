@@ -1,7 +1,7 @@
 <div class="container py-3">
   <div class="row">
     <div class="col-md-10 col-lg-8 col-xl-6 mx-auto d-flex">
-      <%= image_tag @user.get_profile_image, class: "rounded-circle" %>
+      <%= image_tag @user.get_profile_image, size: "150x150", class: "rounded-circle" %>
       <div class="ml-auto">
         <%= render "relationships/btn", user: @user %>
         <!--現在ログインしているユーザーが管理者または本人、かつゲストユーザーでなければ編集ボタンを表示-->
