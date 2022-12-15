@@ -45,9 +45,3 @@
     font-size: 0.5em;
     margin-top: 3px;
   }
-
-  .box::after {
-    display: block;
-    content: "";
-    width: 170px;
-  }
