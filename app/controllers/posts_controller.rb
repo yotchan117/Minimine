@@ -42,11 +42,6 @@ class PostsController < ApplicationController
   def update
     tag_list = params[:post][:tag_name].split(",")
     if @post.update(post_params)
-      #もともと登録されていたタグを削除し、登録し直す
-      old_tags = PostTag.where(post_id: @post.id)
-      old_tags.each do |tag|
-        tag.delete
-      end
       @post.save_tags(tag_list)
       redirect_to post_path(@post), notice: "You have updated post successfully."
     else
