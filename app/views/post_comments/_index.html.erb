@@ -4,7 +4,7 @@
       <%= image_tag post_comment.user.get_profile_image, size: "50x50", class: "rounded-circle" %>
     <% end %>
     <div class="overflow-hidden">
-      <p class="mx-2 mb-0 small"><%= post_comment.created_at.strftime("%Y/%m/%d %H:%M")%></p>
+      <p class="mx-2 mb-0 small"><%= post_comment.created_at.strftime("%Y/%m/%d %H:%M") %></p>
       <p class="mx-2"><%= post_comment.comment %></p>
     </div>
     <% if (current_user.admin?) || (current_user == post_comment.user) %>
