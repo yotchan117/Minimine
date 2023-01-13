@@ -9,7 +9,7 @@
     </div>
     <% if (current_user.admin?) || (current_user == post_comment.user) %>
       <p class="ml-auto mt-auto">
-        <%= link_to post_post_comment_path(post, post_comment), method: :delete, class: "btn btn-sm btn-danger", remote: true do %>
+        <%= link_to post_post_comment_path(post, post_comment), method: :delete, "data-confirm" => "このコメントを削除しますか？", class: "btn btn-sm btn-danger", remote: true do %>
           <i class="fas fa-trash"></i>
         <% end %>
       </p>
