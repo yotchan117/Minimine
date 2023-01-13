@@ -9,9 +9,9 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.new(post_params)
-    tag_list = params[:post][:tag_name].split(",")
+    @tag_list = params[:post][:tag_name].split(",")
     if @post.save
-      @post.save_tags(tag_list)
+      @post.save_tags(@tag_list)
       redirect_to post_path(@post), notice: "You have created post successfully."
     else
       render "new"
@@ -40,9 +40,9 @@ class PostsController < ApplicationController
   end
 
   def update
-    tag_list = params[:post][:tag_name].split(",")
+    @tag_list = params[:post][:tag_name].split(",")
     if @post.update(post_params)
-      @post.save_tags(tag_list)
+      @post.save_tags(@tag_list)
       redirect_to post_path(@post), notice: "You have updated post successfully."
     else
       render "edit"
