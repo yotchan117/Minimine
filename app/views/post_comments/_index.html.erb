@@ -1,15 +1,18 @@
 <% post.post_comments.each do |post_comment| %>
   <div class="d-flex">
     <%= link_to user_path(post_comment.user) do %>
-      <%= image_tag post_comment.user.get_profile_image, size: "30x30", class: "rounded-circle" %>
+      <%= image_tag post_comment.user.get_profile_image, size: "50x50", class: "rounded-circle" %>
     <% end %>
-    <p class="ml-2 d-flex align-items-center overflow-hidden"><%= post_comment.comment %></p>
-    <p class="ml-auto">
-      <% if (current_user.admin?) || (current_user == post_comment.user) %>
+    <div class="overflow-hidden">
+      <p class="mx-2 mb-0 small"><%= post_comment.created_at.strftime("%Y/%m/%d %H:%M")%></p>
+      <p class="mx-2"><%= post_comment.comment %></p>
+    </div>
+    <% if (current_user.admin?) || (current_user == post_comment.user) %>
+      <p class="ml-auto mt-auto">
         <%= link_to post_post_comment_path(post, post_comment), method: :delete, class: "btn btn-sm btn-danger", remote: true do %>
           <i class="fas fa-trash"></i>
         <% end %>
-      <% end %>
-    </p>
+      </p>
+    <% end %>
   </div>
 <% end %>
